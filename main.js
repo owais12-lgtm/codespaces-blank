@@ -15,9 +15,7 @@ const gridHelper = new THREE.GridHelper(10, 20, 0x88aaff, 0x445566);
 scene.add(gridHelper);
 
 const textureLoader = new THREE.TextureLoader();
-
-const texturePath = 'https://cdn.hackclub.com/019fbe14-05ca-7915-883c-d3c0d4e0ec2e/owae.png';
-
+const texturePath = '/owae.png';
 const cubeTexture = textureLoader.load(
     texturePath,
     () => console.log('Texture loaded successfully!'),
