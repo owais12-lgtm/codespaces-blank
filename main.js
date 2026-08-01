@@ -1,8 +1,5 @@
 import * as THREE from 'three';
-
-const loader = new OBJLoader();
-const object = await loader.loadAsync( '/monster.obj' );
-scene.add( object );
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 
 const scene = new THREE.Scene();
@@ -53,6 +50,10 @@ const dodecahedronMaterial = new THREE.MeshStandardMaterial({
     metalness: 0.2,
     emissive: new THREE.Color(0x220044)
 });
+
+const loader = new OBJLoader();
+const object = await loader.loadAsync( '/monster.obj' );
+scene.add( object );
 
 
 const cubeGeometry = new THREE.BoxGeometry(1.2, 1.2, 1.2);
