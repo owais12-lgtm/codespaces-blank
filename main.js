@@ -1,6 +1,4 @@
 import * as THREE from 'three';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x222222);
@@ -16,11 +14,8 @@ document.body.appendChild(renderer.domElement);
 const gridHelper = new THREE.GridHelper(10, 20, 0x88aaff, 0x445566);
 scene.add(gridHelper);
 
-
 const textureLoader = new THREE.TextureLoader();
-
 const texturePath = '/owae.png';
-
 
 const cubeTexture = textureLoader.load(
     texturePath,
@@ -28,7 +23,6 @@ const cubeTexture = textureLoader.load(
     undefined,
     (err) => console.error('Failed to load texture:', err)
 );
-
 
 const cubeMaterial = new THREE.MeshStandardMaterial({
     map: cubeTexture,
@@ -51,10 +45,13 @@ const dodecahedronMaterial = new THREE.MeshStandardMaterial({
     emissive: new THREE.Color(0x220044)
 });
 
-const loader = new OBJLoader();
-const object = await loader.loadAsync( '/monster.obj' );
-scene.add( object );
 
+const octagonMaterial = new THREE.MeshStandardMaterial({
+    map: cubeTexture.clone(),
+    roughness: 0.3,
+    metalness: 0.2,
+    emissive: new THREE.Color(0x224400)
+});
 
 const cubeGeometry = new THREE.BoxGeometry(1.2, 1.2, 1.2);
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -71,6 +68,10 @@ const dodecahedron = new THREE.Mesh(dodecahedronGeometry, dodecahedronMaterial);
 dodecahedron.position.set(2.2, 0, 0);
 scene.add(dodecahedron);
 
+const octagonGeometry = new THREE.CylinderGeometry(0.9, 0.9, 1.2, 8);
+const octagon = new THREE.Mesh(octagonGeometry, octagonMaterial);
+octagon.position.set(-4.5, 0, 0); 
+scene.add(octagon);
 
 const ambientLight = new THREE.AmbientLight(0x404060);
 scene.add(ambientLight);
@@ -99,6 +100,10 @@ function animate() {
     dodecahedron.rotation.x += 0.01;
     dodecahedron.rotation.y += 0.015;
     dodecahedron.rotation.z += 0.005;
+
+    octagon.rotation.x += 0.008;
+    octagon.rotation.y += 0.012;
+    octagon.rotation.z += 0.003;
 
     renderer.render(scene, camera);
 }
