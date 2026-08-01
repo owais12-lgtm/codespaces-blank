@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 
+const loader = new OBJLoader();
+const object = await loader.loadAsync( '/monster.obj' );
+scene.add( object );
+
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x222222);
 
