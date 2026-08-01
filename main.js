@@ -15,7 +15,7 @@ const gridHelper = new THREE.GridHelper(10, 20, 0x88aaff, 0x445566);
 scene.add(gridHelper);
 
 const textureLoader = new THREE.TextureLoader();
-const texturePath = '/owae.png';
+const texturePath = './owae.png';
 
 const cubeTexture = textureLoader.load(
     texturePath,
